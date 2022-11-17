@@ -1,0 +1,15 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/bsmg/BSIPA-MetadataFileSchema/master/Schema.json",
+  "id": "CustomFeet",
+  "name": "CustomFeet",
+  "author": "Raz0rBeam",
+  "version": "0.0.1",
+  "description": "A mod to change the texture of the feet",
+  "gameVersion": "1.25.1",
+  "dependsOn": {
+    "BSIPA": "^4.2.2",
+    "SiraUtil": "^3.0.6",
+    "BeatSaberMarkupLanguage": "^1.6.6"
+  },
+  "features": []
+}

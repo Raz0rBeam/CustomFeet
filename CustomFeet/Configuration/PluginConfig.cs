@@ -1,7 +1,8 @@
-﻿using System.Runtime.CompilerServices;
-using IPA.Config.Stores;
+﻿using IPA.Config.Stores;
+using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo(GeneratedStore.AssemblyVisibilityTarget)]
+
 namespace CustomFeet.Configuration
 {
     internal class PluginConfig

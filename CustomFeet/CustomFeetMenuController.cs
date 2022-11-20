@@ -1,8 +1,8 @@
-﻿using System;
-using Zenject;
-using UnityEngine;
+﻿using BeatSaberMarkupLanguage;
+using System;
 using System.Reflection;
-using BeatSaberMarkupLanguage;
+using UnityEngine;
+using Zenject;
 
 namespace CustomFeet
 {

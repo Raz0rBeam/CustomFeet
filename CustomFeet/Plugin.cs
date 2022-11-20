@@ -1,14 +1,14 @@
-﻿using IPA;
+﻿using BeatSaberMarkupLanguage;
+using CustomFeet.Configuration;
+using CustomFeet.Installers;
+using IPA;
 using IPA.Config;
 using IPA.Config.Stores;
-using System.Reflection;
-using CustomFeet.Configuration;
-using UnityEngine;
 using SiraUtil.Zenject;
-using BeatSaberMarkupLanguage;
-using IPALogger = IPA.Logging.Logger;
-using CustomFeet.Installers;
+using System.Reflection;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using IPALogger = IPA.Logging.Logger;
 
 namespace CustomFeet
 {
@@ -30,30 +30,32 @@ namespace CustomFeet
             zenject.Install<Installering>(Location.Menu);
             zenject.Install<Installering>(Location.Singleplayer);
 
-            LoadFootPlane();
-            // Loading foot plane isnt working. please work
+            SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
         }
-        /*private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
+        // Loading foot plane isnt working. please work
+        private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
         {
             if (arg1.name == "MainMenu" && isDone == false)
             {
                 LoadFootPlane();
                 Log.Critical("IOSDJFOIHJDFIOJIOSDF");
             }
-        }*/
+        }
 
         public GameObject _gameObject;
         public bool isDone = false;
         public static GameObject instantiate;
+        public AssetBundle loadedAssetBundle = AssetBundle.LoadFromMemory(Utilities.GetResource(Assembly.GetExecutingAssembly(), "CustomFeet.Assets.feet"));
         public void LoadFootPlane()
         {
-            var loadedAssetBundle = AssetBundle.LoadFromMemory(Utilities.GetResource(Assembly.GetExecutingAssembly(), "CustomFeet.Assets.customfeet"));
-            _gameObject = loadedAssetBundle.LoadAsset<GameObject>("CustomFeet");
+            _gameObject = loadedAssetBundle.LoadAsset<GameObject>("Plane");
             instantiate = Object.Instantiate(_gameObject);
             Object.DontDestroyOnLoad(instantiate);
             instantiate.name = "NewFeet";
-            loadedAssetBundle.Unload(false);
-            instantiate.SetActive(true);
+            instantiate.transform.position = new Vector3(0f, 0.05f, 0f);
+            instantiate.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            instantiate.SetActive(false);
+            isDone = true;
         }
     }
 }
